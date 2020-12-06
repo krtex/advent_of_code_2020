@@ -4,8 +4,9 @@ def count_answers_in_group(group):
     return len(set(group.replace('\n', '')))
 
 def check_common_part(group):
-    answers = re.split(' |\r\n|\n', group)
+    answers = re.split('\n', group)
     answers = [set(a) for a in answers]
+    print(set.intersection(*answers), len(set.intersection(*answers)))
     return len(set.intersection(*answers))
 
 def read_input(input):
@@ -20,6 +21,5 @@ def count_questions_everyone_answered(groups):
 
 if __name__ == "__main__":
     groups = read_input("input.txt")
-    tests = read_input("test.txt")
     print("Sum of all answers", sum(count_questions_anyone_answered(groups)))
-    print("Sum of common answers", sum(count_questions_everyone_answered(tests)))
+    print("Sum of common answers", sum(count_questions_everyone_answered(groups)))
